@@ -1,5 +1,41 @@
 {
     "common": {
-        "click-me": "Click Me"
+        "login": "Login",
+        "dashboard": "Dashboard",
+        "interview": "Interview",
+        "email": "Email",
+        "password": "Password",
+        "submit": "Submit"
+    },
+    "auth": {
+        "forgot-password": "Forgot Password?",
+        "dont-have-account": "Don't have account?",
+        "create-account": "Create new account"
+    },
+    "error-msg": {
+        "error": "Error",
+        "required": "This field is required.",
+        "invalid-password": "The password provided is invalid.",
+        "invalid-email": "The email address provided is invalid.",
+        "something-went-wrong": "Something went wrong!",
+        "approve-fail": "Approve Failed!",
+        "fail-approve-candidate": "Failed to approve candidate, please try again.",
+        "update-fail": "Update Failed!",
+        "document-update-fail": "Failed to update document, please try again.",
+        "upload-failed-title": "Upload Failed",
+        "upload-failed-description": "Failed to upload file, please try again."
+    },
+    "success-msg": {
+        "updated-id-card": "Successfully Updated ID Card.",
+        "updated-house-registration": "Successfully Updated House Registration.",
+        "approve-success": "Approve Success!",
+        "approved-candidate": "Candidate approved successfully.",
+        "update-success": "Update Success!",
+        "document-update-success": "Document updated successfully.",
+        "updated-interviewee-status": "Successfully Updated!"
+    },
+    "title": {
+        "to-do-list": "To Do List",
+        "log": "Log"
     }
 }
