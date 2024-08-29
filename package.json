@@ -1,8 +1,9 @@
 {
-  "name": "vue-starter-fusion",
+  "name": "vue-template-fusion",
   "version": "0.0.0",
-  "private": true,
+  "private": false,
   "type": "module",
+  "bin": "./bin/index.js",
   "scripts": {
     "dev": "vite",
     "build": "run-p type-check \"build-only {@}\" --",
