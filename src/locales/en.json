@@ -5,12 +5,16 @@
         "interview": "Interview",
         "email": "Email",
         "password": "Password",
-        "submit": "Submit"
+        "submit": "Submit",
+        "logout": "Logout",
+        "cancel": "Cancel"
     },
     "auth": {
         "forgot-password": "Forgot Password?",
         "dont-have-account": "Don't have account?",
-        "create-account": "Create new account"
+        "create-account": "Create new account",
+        "logout-confirm-title": "Are you absolutely sure?",
+        "logout-confirm-description": "This action cannot be undone. This will log you out from your account."
     },
     "error-msg": {
         "error": "Error",

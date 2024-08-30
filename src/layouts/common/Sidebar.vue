@@ -4,6 +4,7 @@ import { ChevronRightIcon } from '@radix-icons/vue'
 import { useRoute } from 'vue-router'
 
 import { sidebarData } from '.'
+import LogoutDialog from '@/components/dialogs/LogoutDialog.vue'
 
 const route = useRoute()
 
@@ -23,7 +24,7 @@ const highlightEntry = (routes: string[]) => {
 </script>
 
 <template>
-    <section class="lg:block hidden min-h-svh min-w-[220px] lg:min-w-[240px] bg-white h-full">
+    <section class="lg:flex flex-col hidden min-h-svh min-w-[220px] lg:min-w-[240px] bg-white h-full">
         <div class="flex flex-col items-center justify-center h-20">
             <h5 class="text-xl font-bold leading-4 cursor-pointer" @click="$router.push('/')">
                 {{ $t('common.dashboard') }} <span class="text-[8px]">v.01</span>
@@ -55,6 +56,10 @@ const highlightEntry = (routes: string[]) => {
 
                 <ChevronRightIcon v-if="item.subMenu" />
             </div>
+        </div>
+
+        <div class="flex justify-center w-full pb-4 mt-auto">
+            <LogoutDialog class="mt-auto" />
         </div>
     </section>
 </template>
