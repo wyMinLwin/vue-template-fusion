@@ -8,7 +8,7 @@ import { useForm } from 'vee-validate'
 import { toTypedSchema } from '@vee-validate/zod'
 import { useI18n } from 'vue-i18n'
 import { useLoaderStore } from '@/stores/loaderStore'
-import { errorMsg } from '@/shared/messages'
+import { loginMutation } from '@/api/auth/queries'
 
 import { Button } from '@/components/ui/button'
 import { FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
@@ -24,17 +24,17 @@ const formSchema = toTypedSchema(
     z.object({
         email: z
             .string({
-                invalid_type_error: t(errorMsg.required),
-                required_error: t(errorMsg.required)
+                invalid_type_error: t('error-msg.required'),
+                required_error: t('error-msg.required')
             })
-            .min(2, { message: t(errorMsg.invalidEmail) })
-            .email(t(errorMsg.invalidEmail)),
+            .min(2, { message: t('error-msg.invalid-email') })
+            .email(t('error-msg.invalid-email')),
         password: z
             .string({
-                invalid_type_error: t(errorMsg.required),
-                required_error: t(errorMsg.required)
+                invalid_type_error: t('error-msg.required'),
+                required_error: t('error-msg.required')
             })
-            .min(2, { message: t(errorMsg.invalidPassword) })
+            .min(2, { message: t('error-msg.invalid-password') })
     })
 )
 
@@ -42,55 +42,40 @@ const { isFieldDirty, handleSubmit } = useForm({
     validationSchema: formSchema
 })
 
-const onSubmit = handleSubmit(async (values) => {
-    try {
-        const url =
-            'https://dev-backend-aroided.azurewebsites.net/Api/UserCustomer/UserCustomerLogin'
+const { mutate: loginUser } = loginMutation.useMutation({
+    onMutate: loadingOn,
+    onSuccess: (data) => {
+        Cookies.set('template-app-token', data.data)
 
-        loadingOn()
-
-        const method = 'POST'
-        const headers = { 'Content-Type': 'Application/json' }
-        // const body = JSON.stringify({
-        //     username: values.email,
-        //     password: values.password
-        // })
-        const body = JSON.stringify({
-            username: 'nanami@jjk.com',
-            password: '123456789'
+        router.push({
+            path: '/',
+            replace: true
         })
-
-        const res = await fetch(url, {
-            method,
-            headers,
-            body
-        })
-
-        if (res.ok) {
-            const data = await res.json()
-            Cookies.set('crc-admin-token', data.userToken)
-
-            router.push({
-                path: '/',
-                replace: true
-            })
-
-            toast({
-                title: `You logged in with the following email: ${values.email}`,
-                description: 'Successful login',
-                variant: 'success'
-            })
-        } else {
-            throw new Error()
-        }
-    } catch (error) {
-        console.error(error)
 
         toast({
-            title: `Login fail!`,
-            description: 'An error occurred during auth. Please try again.',
+            title: t('success-msg.login-success'),
+            variant: 'success'
+        })
+    },
+    onError: (error) => {
+        console.error('Error during login:', error)
+
+        toast({
+            title: t('error-msg.login-fail'),
+            description: t('error-msg.login-error'),
             variant: 'destructive'
         })
+    },
+    onSettled: loadingOff
+})
+
+const onSubmit = handleSubmit(async (values) => {
+    try {
+        loadingOn()
+
+        loginUser(values)
+    } catch (error) {
+        console.error(error)
     } finally {
         loadingOff()
     }
