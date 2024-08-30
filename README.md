@@ -1,39 +1,63 @@
-# vue-starter-fusion
+# Vue3 Template
 
-This template should help get you started developing with Vue 3 in Vite.
+Vue 3 Template
 
-## Recommended IDE Setup
+## Tech Stack
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+**Client UI:** Vue3, Typescript, TailwindCSS, Pinia, Shadcn
 
-## Type Support for `.vue` Imports in TS
+**Client Data Fetch:** Axios, Tanstack
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
+## Run Locally
 
-## Customize configuration
+Install dependencies
 
-See [Vite Configuration Reference](https://vitejs.dev/config/).
-
-## Project Setup
-
-```sh
-pnpm install
+```bash
+  pnpm install
 ```
 
-### Compile and Hot-Reload for Development
+Start the server
 
-```sh
-pnpm dev
+```bash
+  pnpm dev
 ```
 
-### Type-Check, Compile and Minify for Production
+## Folder Structure
 
-```sh
-pnpm build
+```bash
+├───api
+│   └───auth
+│   │   └───queries.ts
+│   │   └───services.ts
+│   │   └───types.d.ts
+│   └───config.ts
+├───assets
+│   ├───css
+│   ├───icons
+│   └───images
+├───components
+├───composable
+├───layouts
+├───lib
+├───locales
+├───modules
+│   ├───auth
+│   │   └───login
+│   │   │   └───LoginView.vue
+│   │   │   └───types.d.ts
+│   ├───log
+│   ├───not-found
+│   └───to-do-list
+├───router
+├───shared
+│   └───global.d.ts
+└───stores
 ```
 
-### Lint with [ESLint](https://eslint.org/)
+#### api
 
-```sh
-pnpm lint
-```
+Split into folders based on controllers
+
+**queries:** Tanstack Logic
+
+**services:** Axios Logic
