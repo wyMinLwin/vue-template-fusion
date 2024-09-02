@@ -22,7 +22,6 @@ import { Button } from '@/components/ui/button'
 import { toTypedSchema } from '@vee-validate/zod'
 import { useForm } from 'vee-validate'
 import * as z from 'zod'
-import { errorMsg } from '@/shared/messages'
 import { useI18n } from 'vue-i18n'
 const { t } = useI18n()
 
@@ -30,12 +29,12 @@ const statusOptions = ['not started', 'in progress', 'completed']
 const formSchema = toTypedSchema(
     z.object({
         title: z
-            .string({ required_error: t(errorMsg.required) })
-            .min(1, { message: t(errorMsg.required) }),
+            .string({ required_error: t('error-msg.required') })
+            .min(1, { message: t('error-msg.required') }),
         description: z
-            .string({ required_error: t(errorMsg.required) })
-            .min(1, { message: t(errorMsg.required) }),
-        status: z.enum(['not started', 'in progress', 'completed'],{required_error: t(errorMsg.required)})
+            .string({ required_error: t('error-msg.required') })
+            .min(1, { message: t('error-msg.required') }),
+        status: z.enum(['not started', 'in progress', 'completed'],{required_error: t('error-msg.required')})
     })
 )
 
