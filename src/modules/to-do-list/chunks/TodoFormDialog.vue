@@ -25,7 +25,7 @@ import * as z from 'zod'
 import { useI18n } from 'vue-i18n'
 const { t } = useI18n()
 
-const statusOptions = ['not started', 'in progress', 'completed']
+const statusOptions = ['Not Started', 'In Progress', 'Completed']
 const formSchema = toTypedSchema(
     z.object({
         title: z
@@ -34,7 +34,7 @@ const formSchema = toTypedSchema(
         description: z
             .string({ required_error: t('error-msg.required') })
             .min(1, { message: t('error-msg.required') }),
-        status: z.enum(['not started', 'in progress', 'completed'],{required_error: t('error-msg.required')})
+        status: z.enum(['Not Started', 'In Progress', 'Completed'],{required_error: t('error-msg.required')})
     })
 )
 
