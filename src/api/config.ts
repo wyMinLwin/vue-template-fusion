@@ -34,26 +34,10 @@ axiosInstance.interceptors.request.use(
 
 axiosInstance.interceptors.response.use(
     (response) => {
-        // Check if the response status is 200 and the API response status is 0
-        if (response.status === 200) {
-            if (response.data.status === 0) {
-                // Return the data part of the API response
-                return response
-            } else {
-                // Handle API-specific errors (e.g., status not 0)
-                return Promise.reject(
-                    new Error(`API error: ${response.data.message || 'Unknown error'}`)
-                )
-            }
-        } else {
-            // Handle HTTP status codes that are not 200
-            return Promise.reject(new Error(`HTTP error: ${response.status}`))
-        }
+        return response
     },
     (error) => {
-        // Handle errors that occur during the request or response
-        const message = error.response?.data?.message || error.message || 'An error occurred'
-        return Promise.reject(new Error(message))
+        return Promise.reject(error)
     }
 )
 
