@@ -45,7 +45,7 @@ const { isFieldDirty, handleSubmit } = useForm({
 const { mutate: loginUser } = loginMutation.useMutation({
     onMutate: loadingOn,
     onSuccess: (data) => {
-        Cookies.set('template-app-token', data.data)
+        Cookies.set('template-app-token', data.token)
 
         router.push({
             path: '/',

@@ -62,16 +62,16 @@ const router = createRouter({
     ]
 })
 
-// router.beforeEach((to, _, next) => {
-//     const token = Cookies.get('template-app-token')
+router.beforeEach((to, _, next) => {
+    const token = Cookies.get('template-app-token')
 
-//     if (to.meta.requiresAuth && !token) {
-//         next('/auth/login')
-//     } else if (!to.meta.requiresAuth && token) {
-//         next('/')
-//     } else {
-//         next()
-//     }
-// })
+    if (to.meta.requiresAuth && !token) {
+        next('/auth/login')
+    } else if (!to.meta.requiresAuth && token) {
+        next('/')
+    } else {
+        next()
+    }
+})
 
 export default router
