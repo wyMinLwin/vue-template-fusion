@@ -1,6 +1,3 @@
 export { default as TableUI } from './TableUI.vue'
 export { default as TranslatedTH } from './TranslatedTH.vue'
-export { default as SortDropDown } from './SortDropDown.vue'
-export { default as ExportExcel } from './ExportExcel.vue'
-export { default as EditableTableCell } from './EditableTableCell.vue'
-export { default as StatusColumn } from './StatusColumn.vue'
+// export { default as ExportExcel } from './ExportExcel.vue'

@@ -9,7 +9,7 @@ export const fetchLogs = {
             queryKey: ['getLogs'],
             queryFn: async () => {
                 const response: APIResponse<LogEntryType[]> = await logServices.getLogs()
-                
+
                 return response.data
             },
             ...opt

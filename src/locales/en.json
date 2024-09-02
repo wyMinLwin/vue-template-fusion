@@ -31,5 +31,17 @@
     "title": {
         "to-do-list": "To Do List",
         "log": "Log"
+    },
+    "fields": {
+        "number": "No.",
+        "logId": "Log ID",
+        "ip": "IP Address",
+        "description": "Description",
+        "exception": "Exception",
+        "laptopModel": "Laptop Model",
+        "logTrace": "Log Trace",
+        "logType": "Log Type",
+        "methodName": "Method Name",
+        "userName": "User Name"
     }
 }
