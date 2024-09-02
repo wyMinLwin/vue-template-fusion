@@ -23,10 +23,12 @@
         "invalid-email": "The email address provided is invalid.",
         "something-went-wrong": "Something went wrong!",
         "login-fail": "Login Fail",
-        "login-error": "An error occurred during Login. Please try again."
+        "login-error": "An error occurred during Login. Please try again.",
+        "fail-create-todo": "Fail to create Todo"
     },
     "success-msg": {
-        "login-success": "Login Successful!"
+        "login-success": "Login Successful!",
+        "create-todo-success": "Successfully created!"
     },
     "title": {
         "to-do-list": "To Do List",

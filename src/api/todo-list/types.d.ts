@@ -10,6 +10,6 @@ export type TodoType = {
 
 export type CreateTodoPayload = {
     title: string
-    updatedAt: string
+    description: string
     status: 'In Progress' | 'Completed' | 'Not Started'
 }

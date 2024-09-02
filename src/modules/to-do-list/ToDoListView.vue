@@ -38,7 +38,7 @@ const todos = computed(() => {
             <div class="grow-0 flex flex-col gap-2">
                 <div class="flex justify-between items-center">
                     <h1 class="text-xl">To Do List!</h1>
-                    <TodoFormDialog>
+                    <TodoFormDialog :type="'add'">
                         <Button>Add New Todo</Button>
                     </TodoFormDialog>
                 </div>
@@ -88,7 +88,7 @@ const todos = computed(() => {
                                     {{ todo.description }} 
                                 </div>
                                 <div class="flex flex-col gap-1 mt-2">
-                                    <Button variant="outline"> Edit </Button>
+                                    <Button :disabled="todo.status === 'Completed'" variant="outline"> Edit </Button>
                                     <Button :disabled="todo.status === 'Completed'"> Complete </Button>
                                 </div>
                             </Card>

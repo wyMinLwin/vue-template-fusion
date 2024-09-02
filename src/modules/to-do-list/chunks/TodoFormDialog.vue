@@ -23,8 +23,21 @@ import { toTypedSchema } from '@vee-validate/zod'
 import { useForm } from 'vee-validate'
 import * as z from 'zod'
 import { useI18n } from 'vue-i18n'
-const { t } = useI18n()
+import { addTodo } from '@/api/todo-list/quries'
+import { useLoaderStore } from '@/stores/loaderStore'
+import { useToast } from '@/components/ui/toast'
+import { useQueryClient } from '@tanstack/vue-query'
+import { ref } from 'vue'
 
+const props = defineProps<{
+    type: 'add' | 'edit'
+}>();
+
+
+const { t } = useI18n()
+const {loadingOn, loadingOff} = useLoaderStore()
+const { toast } = useToast()
+const isOpen = ref(false)   
 const statusOptions = ['Not Started', 'In Progress', 'Completed']
 const formSchema = toTypedSchema(
     z.object({
@@ -46,13 +59,28 @@ const form = useForm({
     }
 })
 
+const {mutate} = addTodo.useMutation({   
+    onMutate: loadingOn,
+    onError: () => {
+        toast({
+            title: t('error-msg.error'),
+            description: t('error-msg.fail-create-todo'),
+            variant: 'destructive'
+        })
+    },
+    onSettled: () => {
+        loadingOff()
+        isOpen.value = false
+    }
+})
+
 const onSubmit = form.handleSubmit(async (values) => {
-    console.log(values)
+    mutate(values)
 })
 </script>
 
 <template>
-    <Dialog>
+    <Dialog v-model:open="isOpen">
         <DialogTrigger>
             <slot></slot>
         </DialogTrigger>
