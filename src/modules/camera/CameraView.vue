@@ -1,15 +1,16 @@
 <script setup lang="ts">
-import Button from '@/components/ui/button/Button.vue'
 import { onMounted, ref } from 'vue'
 
+import Button from '@/components/ui/button/Button.vue'
+
+let stream: MediaStream | null = null
+const cameraStatus = ref(false)
 const videoElement = ref<HTMLVideoElement | null>(null)
 const canvasElement = ref<HTMLCanvasElement | null>(null)
 const imageData = ref('')
 const facingMode = ref<'user' | 'environment'>('environment')
 
 const openCamera = async () => {
-    let stream = null
-
     try {
         const constraints = {
             video: {
@@ -26,9 +27,14 @@ const openCamera = async () => {
             videoElement.value.onloadedmetadata = () => {
                 videoElement.value?.play()
             }
+
+            cameraStatus.value = true
         }
+
+        return close
     } catch (err) {
         console.error('Error accessing the camera: ', err)
+        close() // Ensures the camera is closed in case of an error
     }
 }
 
@@ -61,9 +67,14 @@ const reset = () => {
         context.fillStyle = '#FFF'
         context.fillRect(0, 0, videoElement.value?.videoWidth, videoElement.value?.videoHeight)
 
-        const data = canvasElement.value.toDataURL('image/png')
         imageData.value = ''
     }
+}
+
+const closeCamera = () => {
+    if (!stream) return
+    stream.getTracks().forEach((track) => track.stop())
+    cameraStatus.value = false
 }
 
 onMounted(() => {
@@ -78,14 +89,19 @@ onMounted(() => {
         <section class="grid grid-cols-2 gap-4 py-4 bg-white">
             <div class="flex flex-col items-center gap-3">
                 <video ref="videoElement" src="" class="rounded"></video>
-                <Button @click="takePhoto">Take Photo</Button>
+
+                <div class="space-x-4">
+                    <Button @click="takePhoto">Take Photo</Button>
+                    <Button v-if="!cameraStatus" @click="openCamera">Open Camera</Button>
+                    <Button v-else variant="destructive" @click="closeCamera">Close Camera</Button>
+                </div>
             </div>
 
             <div class="flex flex-col items-center gap-3">
                 <canvas ref="canvasElement"></canvas>
 
                 <div v-if="imageData" class="space-x-4">
-                    <a  :href="imageData" download="Very Nice Image">
+                    <a :href="imageData" download="Very Nice Image">
                         <Button> Download Image </Button>
                     </a>
 
