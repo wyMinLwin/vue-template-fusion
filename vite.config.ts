@@ -19,5 +19,17 @@ export default defineConfig({
         alias: {
             '@': fileURLToPath(new URL('./src', import.meta.url))
         }
+    },
+    optimizeDeps: {
+        esbuildOptions: {
+            supported: {
+                'top-level-await': true
+            }
+        }
+    },
+    esbuild: {
+        supported: {
+            'top-level-await': true
+        }
     }
 })

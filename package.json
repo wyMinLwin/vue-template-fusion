@@ -17,6 +17,7 @@
     "@radix-icons/vue": "^1.0.0",
     "@tanstack/vue-query": "^5.52.2",
     "@tanstack/vue-table": "^8.20.5",
+    "@tato30/vue-pdf": "^1.10.0",
     "@vee-validate/zod": "^4.13.2",
     "@vueuse/core": "^11.0.3",
     "axios": "^1.7.5",

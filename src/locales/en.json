@@ -32,7 +32,8 @@
     },
     "title": {
         "to-do-list": "To Do List",
-        "log": "Log"
+        "log": "Log",
+        "viewers": "Viewers"
     },
     "fields": {
         "number": "No.",
