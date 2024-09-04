@@ -7,7 +7,7 @@ import { Sidebar } from './common'
         <aside>
             <Sidebar />
         </aside>
-        <main class="w-full overflow-y-auto">
+        <main class="w-full min-h-full overflow-y-auto">
             <!-- <header class="lg:justify-end flex justify-between w-full p-3 pb-2">
                 <MobileSidebar />
 
