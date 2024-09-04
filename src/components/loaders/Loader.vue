@@ -1,14 +1,16 @@
 <script setup lang="ts">
 import { useLoaderStore } from '@/stores/loaderStore'
+import { useIsFetching } from '@tanstack/vue-query'
 import { storeToRefs } from 'pinia'
 
+const isFetching = useIsFetching()
 const loaderStore = useLoaderStore()
 const { isLoading } = storeToRefs(loaderStore)
 </script>
 
 <template>
     <section
-        v-if="isLoading"
+        v-if="isLoading || isFetching"
         class="bg-black/75 fixed top-0 z-[999] flex items-center justify-center w-screen h-screen overflow-hidden"
     >
         <div class="loader"></div>
