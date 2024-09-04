@@ -33,7 +33,8 @@
     "title": {
         "to-do-list": "To Do List",
         "log": "Log",
-        "viewers": "Viewers"
+        "viewers": "Viewers",
+        "camera": "Camera"
     },
     "fields": {
         "number": "No.",

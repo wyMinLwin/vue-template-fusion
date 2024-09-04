@@ -1,4 +1,4 @@
-import { ListBulletIcon, ActivityLogIcon, ViewGridIcon } from '@radix-icons/vue'
+import { ListBulletIcon, ActivityLogIcon, ViewGridIcon, CameraIcon } from '@radix-icons/vue'
 
 /**
  * * routeNames   - highlight for all route in array / redirect to first entry in array
@@ -25,7 +25,13 @@ export const sidebarData = [
         name: 'title.viewers',
         icon: ViewGridIcon,
         subMenu: null
-    }
+    },
+    {
+        routeNames: ['camera'],
+        name: 'title.camera',
+        icon: CameraIcon,
+        subMenu: null
+    },
 ]
 
 export { default as Sidebar } from './Sidebar.vue'
