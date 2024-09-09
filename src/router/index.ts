@@ -13,6 +13,7 @@ import LogView from '@/modules/log/LogView.vue'
 import ToDoListView from '@/modules/to-do-list/ToDoListView.vue'
 import ViewersView from '@/modules/viewers/ViewersView.vue'
 import CameraView from '@/modules/camera/CameraView.vue'
+import SegmentsView from '@/modules/segments/SegmentsView.vue'
 
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
@@ -66,6 +67,14 @@ const router = createRouter({
                     path: 'camera',
                     name: 'camera',
                     component: CameraView,
+                    meta: {
+                        requiresAuth: true
+                    }
+                },
+                {
+                    path: 'segments',
+                    name: 'segments',
+                    component: SegmentsView,
                     meta: {
                         requiresAuth: true
                     }

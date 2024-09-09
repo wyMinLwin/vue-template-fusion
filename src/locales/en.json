@@ -34,7 +34,8 @@
         "to-do-list": "To Do List",
         "log": "Log",
         "viewers": "Viewers",
-        "camera": "Camera"
+        "camera": "Camera",
+        "segments": "Segments"
     },
     "fields": {
         "number": "No.",
