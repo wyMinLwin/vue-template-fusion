@@ -14,6 +14,7 @@ import ToDoListView from '@/modules/to-do-list/ToDoListView.vue'
 import ViewersView from '@/modules/viewers/ViewersView.vue'
 import CameraView from '@/modules/camera/CameraView.vue'
 import SegmentsView from '@/modules/segments/SegmentsView.vue'
+import TextToSpeechView from '@/modules/text-to-speech/TextToSpeechView.vue'
 
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
@@ -75,6 +76,14 @@ const router = createRouter({
                     path: 'segments',
                     name: 'segments',
                     component: SegmentsView,
+                    meta: {
+                        requiresAuth: true
+                    }
+                },
+                {
+                    path: 'text-to-speech',
+                    name: 'text-to-speech',
+                    component: TextToSpeechView,
                     meta: {
                         requiresAuth: true
                     }

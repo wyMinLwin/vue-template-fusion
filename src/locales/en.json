@@ -7,7 +7,13 @@
         "password": "Password",
         "submit": "Submit",
         "logout": "Logout",
-        "cancel": "Cancel"
+        "cancel": "Cancel",
+        "title": "Title",
+        "content": "Content",
+        "gender": "Gender",
+        "language": "Language",
+        "models": "Models",
+        "settings": "Settings"
     },
     "auth": {
         "forgot-password": "Forgot Password?",
@@ -35,7 +41,8 @@
         "log": "Log",
         "viewers": "Viewers",
         "camera": "Camera",
-        "segments": "Segments"
+        "segments": "Segments",
+        "text-to-speech": "Text to Speech"
     },
     "fields": {
         "number": "No.",
