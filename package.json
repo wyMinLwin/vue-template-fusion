@@ -26,6 +26,7 @@
     "clsx": "^2.1.1",
     "js-cookie": "^3.0.5",
     "lucide-vue-next": "^0.445.0",
+    "microsoft-cognitiveservices-speech-sdk": "^1.40.0",
     "pinia": "^2.1.7",
     "pinia-plugin-persistedstate": "^3.2.3",
     "radix-vue": "^1.9.5",

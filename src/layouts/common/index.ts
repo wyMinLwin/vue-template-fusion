@@ -44,6 +44,12 @@ export const sidebarData = [
         icon: FileTextIcon,
         subMenu: null
     },
+    {
+        routeNames: ['speech-to-text'],
+        name: 'title.speech-to-text',
+        icon: FileTextIcon,
+        subMenu: null
+    },
 ]
 
 export { default as Sidebar } from './Sidebar.vue'

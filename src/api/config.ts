@@ -9,7 +9,7 @@ export type APIResponse<T> = {
 
 const axiosInstance = axios.create({
     baseURL: 'https://crc-api-test.azurewebsites.net/api/v1/',
-    timeout: 10000, // Optional: Set a timeout for requests (in milliseconds)
+    // timeout: 10000, // Optional: Set a timeout for requests (in milliseconds)
     headers: {
         'Content-Type': 'application/json'
     }

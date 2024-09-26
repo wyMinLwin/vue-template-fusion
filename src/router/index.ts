@@ -15,6 +15,7 @@ import ViewersView from '@/modules/viewers/ViewersView.vue'
 import CameraView from '@/modules/camera/CameraView.vue'
 import SegmentsView from '@/modules/segments/SegmentsView.vue'
 import TextToSpeechView from '@/modules/text-to-speech/TextToSpeechView.vue'
+import SpeechToTextView from '@/modules/speech-to-text/SpeechToTextView.vue'
 
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
@@ -84,6 +85,14 @@ const router = createRouter({
                     path: 'text-to-speech',
                     name: 'text-to-speech',
                     component: TextToSpeechView,
+                    meta: {
+                        requiresAuth: true
+                    }
+                },
+                {
+                    path: 'speech-to-text',
+                    name: 'speech-to-text',
+                    component: SpeechToTextView,
                     meta: {
                         requiresAuth: true
                     }

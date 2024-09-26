@@ -13,7 +13,9 @@
         "gender": "Gender",
         "language": "Language",
         "models": "Models",
-        "settings": "Settings"
+        "settings": "Settings",
+        "video-mp4": "Video mp4",
+        "wav-file": "Wav file"
     },
     "auth": {
         "forgot-password": "Forgot Password?",
@@ -42,7 +44,8 @@
         "viewers": "Viewers",
         "camera": "Camera",
         "segments": "Segments",
-        "text-to-speech": "Text to Speech"
+        "text-to-speech": "Text to Speech",
+        "speech-to-text": "Speech to Text"
     },
     "fields": {
         "number": "No.",
@@ -55,5 +58,8 @@
         "logType": "Log Type",
         "methodName": "Method Name",
         "userName": "User Name"
+    }, 
+    "placeholder": {
+        "title": "Title"
     }
 }
