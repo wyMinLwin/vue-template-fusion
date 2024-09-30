@@ -1,14 +1,21 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
-
 import Button from '@/components/ui/button/Button.vue'
+import Dialog from '@/components/ui/dialog/Dialog.vue'
+import DialogContent from '@/components/ui/dialog/DialogContent.vue'
+import DialogTrigger from '@/components/ui/dialog/DialogTrigger.vue'
+import DialogClose from '@/components/ui/dialog/DialogClose.vue'
 
 let stream: MediaStream | null = null
+let mediaRecorder: MediaRecorder | null = null
 const cameraStatus = ref(false)
 const videoElement = ref<HTMLVideoElement | null>(null)
 const canvasElement = ref<HTMLCanvasElement | null>(null)
 const imageData = ref('')
 const facingMode = ref<'user' | 'environment'>('environment')
+const isRecording = ref(false)
+const recordedChunks: Blob[] = []
+const recordedVideoUrl = ref('')
 
 const openCamera = async () => {
     try {
@@ -38,43 +45,35 @@ const openCamera = async () => {
     }
 }
 
-const takePhoto = () => {
-    const context = canvasElement.value?.getContext('2d')
-
-    if (canvasElement.value && videoElement.value) {
-        canvasElement.value.width = videoElement.value?.videoWidth || 0
-        canvasElement.value.height = videoElement.value?.videoHeight || 0
-
-        context?.drawImage(
-            videoElement.value,
-            0,
-            0,
-            canvasElement.value.width,
-            canvasElement.value.height
-        )
-
-        const data = canvasElement.value.toDataURL('image/png')
-        imageData.value = data
-    }
-}
-
-const reset = () => {
-    const context = canvasElement.value?.getContext('2d')
-
-    if (!context) return
-
-    if (canvasElement.value && videoElement.value) {
-        context.fillStyle = '#FFF'
-        context.fillRect(0, 0, videoElement.value?.videoWidth, videoElement.value?.videoHeight)
-
-        imageData.value = ''
-    }
-}
-
 const closeCamera = () => {
     if (!stream) return
     stream.getTracks().forEach((track) => track.stop())
     cameraStatus.value = false
+}
+
+const startRecording = () => {
+    if (stream) {
+        mediaRecorder = new MediaRecorder(stream)
+        mediaRecorder.ondataavailable = (event) => {
+            if (event.data.size > 0) {
+                recordedChunks.push(event.data)
+            }
+        }
+        mediaRecorder.onstop = () => {
+            const blob = new Blob(recordedChunks, { type: 'video/webm' })
+            recordedVideoUrl.value = URL.createObjectURL(blob)
+            recordedChunks.length = 0
+        }
+        mediaRecorder.start()
+        isRecording.value = true
+    }
+}
+
+const stopRecording = () => {
+    if (mediaRecorder && mediaRecorder.state !== 'inactive') {
+        mediaRecorder.stop()
+        isRecording.value = false
+    }
 }
 
 onMounted(() => {
@@ -92,6 +91,9 @@ onMounted(() => {
 
                 <div class="space-x-4">
                     <Button @click="takePhoto">Take Photo</Button>
+                    <Button v-if="!isRecording" @click="startRecording">Record Video</Button>
+                    <Button v-else variant="destructive" @click="stopRecording">Stop Recording</Button>
+
                     <Button v-if="!cameraStatus" @click="openCamera">Open Camera</Button>
                     <Button v-else variant="destructive" @click="closeCamera">Close Camera</Button>
                 </div>
@@ -104,10 +106,18 @@ onMounted(() => {
                     <a :href="imageData" download="Very Nice Image">
                         <Button> Download Image </Button>
                     </a>
-
-                    <Button variant="destructive" @click="reset"> Reset </Button>
                 </div>
             </div>
         </section>
+
+        <Dialog>
+            <DialogTrigger as-child>
+                <Button v-if="recordedVideoUrl">Preview Video</Button>
+            </DialogTrigger>
+            <DialogContent>
+                <video :src="recordedVideoUrl" controls class="w-full h-auto"></video>
+                <DialogClose>Close</DialogClose>
+            </DialogContent>
+        </Dialog>
     </div>
 </template>
