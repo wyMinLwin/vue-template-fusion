@@ -17,6 +17,27 @@ const isRecording = ref(false)
 const recordedChunks: Blob[] = []
 const recordedVideoUrl = ref('')
 
+const takePhoto = () => {
+    const context = canvasElement.value?.getContext('2d')
+
+    if (canvasElement.value && videoElement.value) {
+        canvasElement.value.width = videoElement.value?.videoWidth || 0
+        canvasElement.value.height = videoElement.value?.videoHeight || 0
+
+        context?.drawImage(
+            videoElement.value,
+            0,
+            0,
+            canvasElement.value.width,
+            canvasElement.value.height
+        )
+
+        const data = canvasElement.value.toDataURL('image/png')
+        imageData.value = data
+    }
+}
+
+
 const openCamera = async () => {
     try {
         const constraints = {
