@@ -157,7 +157,7 @@ onMounted(() => {
         <h1 class="text-xl font-bold">Camera!</h1>
 
         <section class="grid grid-cols-2 gap-4 py-4 bg-white">
-            <div class="flex flex-col items-center gap-3">
+            <div class="flex flex-col items-center gap-3 col-span-2">
                 <video ref="videoElement" src="" class="rounded"></video>
 
                 <div class="space-x-4">
@@ -172,9 +172,10 @@ onMounted(() => {
                 </div>
             </div>
 
+            <div class="col-span-2 grid grid-cols-2"></div>
             <div class="flex flex-col items-center gap-3">
                 <h2 v-if="imageData">Captured Image</h2>
-                <canvas ref="canvasElement"></canvas>
+                <canvas ref="canvasElement" class="w-full sm:w-[400px] h-auto sm:h-[400px] aspect-square"></canvas>
 
                 <div v-if="imageData" class="space-x-4">
                     <a :href="imageData" download="Very Nice Image">
@@ -183,7 +184,22 @@ onMounted(() => {
                     <Button @click="uploadFileToAPI(imageBlob!)">Upload Image</Button>
                 </div>
             </div>
-            <Dialog>
+            <div class="flex flex-col items-center gap-3">
+                <h2 v-if="recordedVideoUrl">Captured Video</h2>
+                <video
+                    v-if="recordedVideoUrl"
+                    :src="recordedVideoUrl"
+                    controls
+                    class="w-full sm:w-[400px] h-auto sm:h-[400px] aspect-square resize-none"
+                ></video>
+                <div v-if="recordedVideoUrl" class="space-x-4">
+                    <a :href="recordedVideoUrl" download="Very Nice Image">
+                        <Button> Download Video </Button>
+                    </a>
+                    <Button @click="uploadFileToAPI(videoBlob!)">Upload Video</Button>
+                </div>
+            </div>
+            <!-- <Dialog>
                 <DialogTrigger as-child>
                     <Button v-if="recordedVideoUrl">Preview Video</Button>
                 </DialogTrigger>
@@ -191,11 +207,10 @@ onMounted(() => {
                     <DialogHeader>
                         <DialogTitle>Recorded Video</DialogTitle>
                     </DialogHeader>
-                    <video :src="recordedVideoUrl" controls class="w-full h-auto"></video>
                     <DialogClose @click="uploadFileToAPI(videoBlob!)">Upload</DialogClose>
                     <DialogClose>Close</DialogClose>
                 </DialogContent>
-            </Dialog>
+            </Dialog> -->
         </section>
         <Dialog v-model:open="uploadFileReviewDialog">
             <DialogContent>
