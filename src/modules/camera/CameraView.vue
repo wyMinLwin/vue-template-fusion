@@ -178,7 +178,7 @@ onMounted(() => {
                 <canvas ref="canvasElement" class="w-full sm:w-[400px] h-auto sm:h-[400px] aspect-square"></canvas>
 
                 <div v-if="imageData" class="space-x-4">
-                    <a :href="imageData" download="Very Nice Image">
+                    <a :href="imageData" download="Captured Image">
                         <Button> Download Image </Button>
                     </a>
                     <Button @click="uploadFileToAPI(imageBlob!)">Upload Image</Button>
@@ -193,7 +193,7 @@ onMounted(() => {
                     class="w-full sm:w-[400px] h-auto sm:h-[400px] aspect-square resize-none"
                 ></video>
                 <div v-if="recordedVideoUrl" class="space-x-4">
-                    <a :href="recordedVideoUrl" download="Very Nice Image">
+                    <a :href="recordedVideoUrl" download="Captured Video">
                         <Button> Download Video </Button>
                     </a>
                     <Button @click="uploadFileToAPI(videoBlob!)">Upload Video</Button>
