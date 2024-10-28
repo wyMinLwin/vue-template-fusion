@@ -1,4 +1,4 @@
-import { ListBulletIcon, ActivityLogIcon, ViewGridIcon, CameraIcon, FileTextIcon } from '@radix-icons/vue'
+import { ListBulletIcon, ActivityLogIcon, ViewGridIcon, CameraIcon, FileTextIcon, ArchiveIcon } from '@radix-icons/vue'
 
 /**
  * * routeNames   - highlight for all route in array / redirect to first entry in array
@@ -48,6 +48,12 @@ export const sidebarData = [
         routeNames: ['speech-to-text'],
         name: 'title.speech-to-text',
         icon: FileTextIcon,
+        subMenu: null
+    },
+    {
+        routeNames: ['json'],
+        name: 'title.json',
+        icon: ArchiveIcon,
         subMenu: null
     },
 ]

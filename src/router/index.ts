@@ -16,6 +16,7 @@ import CameraView from '@/modules/camera/CameraView.vue'
 import SegmentsView from '@/modules/segments/SegmentsView.vue'
 import TextToSpeechView from '@/modules/text-to-speech/TextToSpeechView.vue'
 import SpeechToTextView from '@/modules/speech-to-text/SpeechToTextView.vue'
+import JsonView from '@/modules/json/JsonView.vue'
 
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
@@ -97,6 +98,14 @@ const router = createRouter({
                         requiresAuth: true
                     }
                 },
+                {
+                    path: 'json',
+                    name: 'json',
+                    component: JsonView,
+                    meta: {
+                        requiresAuth: true
+                    }
+                }
             ]
         },
         {
@@ -108,17 +117,18 @@ const router = createRouter({
 })
 
 router.beforeEach((to, _, next) => {
-    const token = Cookies.get('template-app-token')
+    // const token = Cookies.get('template-app-token')
 
-    if (to.meta.requiresAuth && !token) {
-        next('/auth/login')
-    } else if (to.name === 'NotFound') {
-        next()
-    }  else if (!to.meta.requiresAuth && token) {
-        next('/')
-    } else {
-        next()
-    }
+    // if (to.meta.requiresAuth && !token) {
+    //     next('/auth/login')
+    // } else if (to.name === 'NotFound') {
+    //     next()
+    // }  else if (!to.meta.requiresAuth && token) {
+    //     next('/')
+    // } else {
+    //     next()
+    // }
+    next()
 })
 
 export default router

@@ -92,3 +92,44 @@
         font-family: 'Sintony', sans-serif;
     }
 }
+
+.editor {
+    background-color: #2d2d2d; /* Dark background */
+    color: #f8f8f2; /* Default text color */
+    font-family: 'Fira Code', monospace;
+    font-size: 14px;
+    padding: 16px;
+    padding-top: 40px; /* Space for positioning */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Soft shadow */
+}
+
+/* Custom styles for Prism tokens */
+.editor .token.comment,
+.editor .token.block-comment {
+    color: #75715e !important; /* Comment color */
+}
+
+.editor .token.keyword {
+    color: #66d9ef !important; /* Keyword color */
+}
+
+.editor .token.string {
+    color: #e6db74 !important; /* String color */
+}
+
+.editor .token.function {
+    color: #a6e22e !important; /* Function name color */
+}
+
+.editor .token.number {
+    color: #ae81ff !important; /* Number color */
+}
+
+.editor .token.variable {
+    color: #f92672 !important; /* Variable color */
+}
+
+.editor .token.operator {
+    color: #f92672 !important; /* Operator color */
+}
